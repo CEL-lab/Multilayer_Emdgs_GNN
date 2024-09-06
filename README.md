@@ -46,7 +46,7 @@ Run the classical machine learning experiments using the script:
 
 ```bash
 python classical_ml.py
-
+----
 This will train and evaluate the models on full raw data and selected features, outputting accuracy and performance metrics to the `Results` folder.
 
 ## 2. Multilayer Network Embeddings
