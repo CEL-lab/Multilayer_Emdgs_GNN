@@ -36,33 +36,29 @@ These layers were preprocessed and saved into an `.h5` container that contains t
 - Six network layers (edge indices for each layer)
 - Train/test masks and target classes
 
-## Classical Machine Learning
+## Classical Machine Learning and Network Embeddings
 
-In the first part of the project, we applied **RandomForest**, **XGBoost**, and **KNeighbors** classifiers on the **full raw data** and **selected features**.
+The entire process of classical machine learning and generating network embeddings is performed in the `Final_Preprocess_NW_Embeddings.ipynb` notebook. This notebook contains detailed explanations for each step, including:
 
-### How to Run
+1. **Network Construction**: Creating adjacency matrices for the multilayer network.
+2. **Network Embedding**: Using the **multi-node2vec** algorithm to generate network embeddings from the multilayer structure.
+3. **Classical Machine Learning**: Applying **RandomForest**, **XGBoost**, and **KNeighbors** classifiers on the **full raw data** and **selected features**, as well as on the embeddings generated from the multilayer network.
 
-Run the classical machine learning experiments using the script:
-
-```bash
-  python classical_ml.py
-```
-
-This will train and evaluate the models on full raw data and selected features, outputting accuracy and performance metrics to the Results folder.
-## 2. Multilayer Network Embeddings
-For embedding nodes in the multilayer network, we used the multi-node2vec algorithm, which performs random walks across the multilayer structure and learns node representations.
+Every step, from preprocessing the data to merging the network embeddings with the target column and running classical machine learning models, is covered in the `.ipynb` file.
 
 ### How to Run
-To generate node embeddings, run:
+
+You can run the entire process, including classical machine learning and embedding generation, by executing the Jupyter notebook `Final_Preprocess_NW_Embeddings.ipynb`.
+
+Alternatively, you can generate network embeddings separately by running:
+
 ```bash
 python multi_node2vec.py --dir <path_to_network_files> --output <path_to_save_embeddings> --d 100 --window_size 10
 ```
-This command will save the learned embeddings to the specified output path.
-
 For more details on multi-node2vec, you can refer to the paper [here](https://github.com/jdwilson4/multi-node2vec).
 
 ## 3. Multilayer GNN (EMGNN)
-In the final part of the project, we used a Multilayer GNN (EMGNN) to capture complex relationships across multiple layers of the network. EMGNN helps us to predict target classes (incident types) by learning both node-level and edge-level relationships across layers.
+In the final part of the project, we used a Multilayer GNN (EMGNN) to capture complex relationships across multiple layers of the network. EMGNN helps us to predict target classes (Job Area District) by learning both node-level and edge-level relationships across layers.
 
 ### How to Train
 To train the Multilayer GNN, run:
