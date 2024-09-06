@@ -46,3 +46,18 @@ Run the classical machine learning experiments using the script:
 
 ```bash
 python classical_ml.py
+This will train and evaluate the models on full raw data and selected features, outputting accuracy and performance metrics to the `Results` folder.
+
+---
+
+## 2. Multilayer Network Embeddings
+
+For embedding nodes in the multilayer network, we used the **multi-node2vec** algorithm, which performs random walks across the multilayer structure and learns node representations.
+
+### How to Run
+
+To generate node embeddings, run:
+
+```bash
+python multi_node2vec.py --dir <path_to_network_files> --output <path_to_save_embeddings> --d 100 --window_size 10
+
