@@ -45,18 +45,58 @@ In the first part of the project, we applied **RandomForest**, **XGBoost**, and 
 Run the classical machine learning experiments using the script:
 
 ```bash
-python classical_ml.py
+  python classical_ml.py
+```
 
-## This will train and evaluate the models on full raw data and selected features, outputting accuracy and performance metrics to the `Results` folder.
-
+This will train and evaluate the models on full raw data and selected features, outputting accuracy and performance metrics to the Results folder.
 ## 2. Multilayer Network Embeddings
-
-For embedding nodes in the multilayer network, we used the **multi-node2vec** algorithm, which performs random walks across the multilayer structure and learns node representations.
+For embedding nodes in the multilayer network, we used the multi-node2vec algorithm, which performs random walks across the multilayer structure and learns node representations.
 
 ### How to Run
-
 To generate node embeddings, run:
-
 ```bash
 python multi_node2vec.py --dir <path_to_network_files> --output <path_to_save_embeddings> --d 100 --window_size 10
+```
+This command will save the learned embeddings to the specified output path.
 
+For more details on multi-node2vec, you can refer to the paper [here](https://github.com/jdwilson4/multi-node2vec).
+
+## 3. Multilayer GNN (EMGNN)
+In the final part of the project, we used a Multilayer GNN (EMGNN) to capture complex relationships across multiple layers of the network. EMGNN helps us to predict target classes (incident types) by learning both node-level and edge-level relationships across layers.
+
+### How to Train
+To train the Multilayer GNN, run:
+```bash
+python train.py --gcn 1 --dataset <dataset_name>
+```
+Replace <dataset_name> with the name of your preprocessed multilayer network in .h5 format.
+
+## Explainability
+You can explain the model predictions using Captum by running the following command:
+```bash
+python explain.py --model_dir <path_to_trained_model> --gene_label <target_class>
+```
+This will generate insights into the model's predictions by explaining edge and node feature importance.
+
+## Requirements
+To run the project, ensure you have Python 3.x installed along with the required dependencies. You can install them by running:
+```bash
+pip install -r requirements.txt
+```
+### Key Libraries:
+- Python 3.9
+- PyTorch
+- CuML (for GPU-accelerated machine learning)
+- PyTorch Geometric
+- Captum
+- NetworkX
+- Scikit-learn
+- Pandas
+
+## Citation
+
+If you use this work, please cite the following:
+
+**Muhammad Kazim, Harun Pirim**  
+*Multilayer GNNs and Network Embeddings for Predictive Analysis in Energy Networks*  
+*[Paper in preparation]*
