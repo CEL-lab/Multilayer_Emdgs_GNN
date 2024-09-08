@@ -4,7 +4,7 @@ This repository contains the Python code and resources for the paper **"Multilay
 
 1. **Classical Machine Learning**: Using raw data and selected features for predictive analysis.
 2. **Multilayer Network Embeddings**: Using the **multi-node2vec** algorithm to embed multilayer network structures.
-3. **Multilayer GNNs**: Applying **Explainable Multilayer GNNs (EMGNN)** for node-level and edge-level predictions.
+3. **Multilayer GNNs**: Applying **Explainable Multilayer GNNs (EMGNN)** for Job Area (District) prediction.
 
 ## Data Preparation
 
