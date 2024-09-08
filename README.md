@@ -38,7 +38,7 @@ These layers were preprocessed and saved into an `.h5` container that contains t
 
 ## Classical Machine Learning and Network Embeddings
 
-The entire process of classical machine learning and generating network embeddings is performed in the `Final_Preprocess_NW_Embeddings.ipynb (https://github.com/CEL-lab/Multilayer_Emdgs_GNN/blob/main/Codes/Final_Preprocess_NW_Embeddigns.ipynb) notebook. This notebook contains detailed explanations for each step, including:
+The entire process of classical machine learning and generating network embeddings is performed in the [Final_Preprocess_NW_Embeddings.ipynb](https://github.com/CEL-lab/Multilayer_Emdgs_GNN/blob/main/Codes/Final_Preprocess_NW_Embeddigns.ipynb) notebook. This notebook contains detailed explanations for each step, including:
 
 1. **Network Construction**: Creating adjacency matrices for the multilayer network.
 2. **Network Embedding**: Using the **multi-node2vec** algorithm to generate network embeddings from the multilayer structure.
