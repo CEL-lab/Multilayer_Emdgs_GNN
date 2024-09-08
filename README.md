@@ -30,7 +30,6 @@ We constructed a **six-layer multilayer network** from the incident data, with e
 - `Major Storm Event (Yes/No)`
 - `Distribution, Substation, Transmission`
 
-These layers were preprocessed and saved into an `.h5` container that contains the following:
 These layers were preprocessed using the [Preprocess_Container.ipynb](https://github.com/CEL-lab/Multilayer_Emdgs_GNN/blob/main/Codes/EMGNN/Preprocess_Container.ipynb) script and saved into an .h5 container that contains the following:
 - Node features (numeric and one-hot encoded non-numeric features)
 - Six network layers (edge indices for each layer)
