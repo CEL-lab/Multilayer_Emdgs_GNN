@@ -81,7 +81,7 @@ Replace <dataset_name> with the name of your preprocessed multilayer network in 
 ## Explainability
 You can explain the model predictions using Captum by running the following command:
 ```bash
-python explain.py --model_dir <path_to_trained_model> --gene_label <target_class>
+python explain.py --model_dir <path_to_trained_model> --network_label <target_layer>
 ```
 This will generate insights into the model's predictions by explaining edge and node feature importance.
 
