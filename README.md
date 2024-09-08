@@ -48,7 +48,7 @@ Every step, from preprocessing the data to merging the network embeddings with t
 
 ### How to Run
 
-You can run the entire process, including classical machine learning and embedding generation, by executing the Jupyter notebook `Final_Preprocess_NW_Embeddings.ipynb`.
+You can run the entire process, including classical machine learning and embedding generation, by executing the Jupyter notebook [Final_Preprocess_NW_Embeddings.ipynb](https://github.com/CEL-lab/Multilayer_Emdgs_GNN/blob/main/Codes/Final_Preprocess_NW_Embeddigns.ipynb).
 
 Alternatively, you can generate network embeddings separately by running:
 
