@@ -64,7 +64,12 @@ The following image provides a schematic:
 For more details on multi-node2vec, you can refer to the paper [here](https://github.com/jdwilson4/multi-node2vec).
 
 ## 3. Multilayer GNN (EMGNN)
-In the final part of the project, we used a Multilayer GNN (EMGNN) to capture complex relationships across multiple layers of the network. EMGNN helps us to predict target classes (Job Area District) by learning both node-level and edge-level relationships across layers.
+In the final part of the project, we used a Multilayer GNN (EMGNN) to capture complex relationships across multiple layers of the network. EMGNN helps us predict target classes (Job Area District) by learning both node-level and edge-level relationships across layers.
+
+The implementation of EMGNN in this project is inspired by the work from the Explainable Multilayer Graph Neural Network (EMGNN) for Cancer Gene Prediction. For more details, you can refer to the original repository [here](https://github.com/zhanglab-aim/EMGNN). 
+ 
+
+![EMGNN Architecture](Fig1-1.png)
 
 ### How to Train
 To train the Multilayer GNN, run:
