@@ -68,7 +68,9 @@ parser.add_argument('-dataset', '--dataset',
                     help='Input Networks',
                     nargs='+',
                     dest='dataset',
-                    default=["IREF_2015", "IREF", "STRING", "PCNET", "MULTINET", "CPDB"])
+                    default=["Layer1_JobRegion", "Layer2_Date", 
+                             "Layer3_CustAffected", "Layer4_Cause", 
+                             "Layer5_StormEvent", "Layer6_InfraType"])
 
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -539,21 +541,40 @@ with open(f"{model_dir}/idx2node.pkl", "wb") as handle:
     pickle.dump(idx2node, handle)
 
 with open(f"{model_dir}/meta_edge_index.pkl", "wb") as handle:
-    pickle.dump(model.meta_edge_index.cpu(), handle)
+    #pickle.dump(model.meta_edge_index.cpu(), handle)
+    pickle.dump(model.meta_edge_indices[0].cpu(), handle)
 
 with open(f"{model_dir}/final_y.pkl", "wb") as handle:
     pickle.dump(y.cpu(), handle)
 
-all_node_names = np.concatenate([node_names[:, 1], meta_node_names], axis=0)
+#all_node_names = np.concatenate([node_names[:, 1], meta_node_names], axis=0)
+#all_node_names = np.concatenate([node_names, meta_node_names], axis=0)
+all_node_names = np.concatenate([node_names, meta_node_names], axis=0).astype(str)
+
+total_all_nodes = len(all_node_names)  # Total number of all nodes, including meta nodes
+
+# Dynamically determine the total number of nodes
+total_nodes = len(node_names)  # Use the length of node_names to get the actual number of nodes
+
 args.dataset.append("Meta_Node")
 g = 0
+
 for i, n in enumerate(all_node_names):
-    if i < number_nodes_each_graph[g]:
+    if i < total_all_nodes:
+    #if i < number_nodes_each_graph[g]:
         all_node_names[i] = n + "_" + args.dataset[g]
+        
     else:
-        g += 1
-        number_nodes_each_graph[g] += number_nodes_each_graph[g-1]
-        all_node_names[i] = n + "_" + args.dataset[g]
+        print(f"Index i={i} is out of range for total_nodes={total_nodes}.")
+        break
+        #g += 1
+        # Check if g is within bounds of number_nodes_each_graph
+        #if g < len(number_nodes_each_graph):
+         #   number_nodes_each_graph[g] += number_nodes_each_graph[g-1]
+          #  all_node_names[i] = n + "_" + args.dataset[g]
+        #else:
+         #   print(f"Index g={g} is out of range for number_nodes_each_graph with length {len(number_nodes_each_graph)}.")
+          #  break  # Exit the loop if g goes out of bounds
 
 with open(f"{model_dir}/all_node_names.pkl", "wb") as handle:
     pickle.dump(all_node_names, handle)
@@ -561,6 +582,11 @@ with open(f"{model_dir}/all_node_names.pkl", "wb") as handle:
 with open(f"{model_dir}/edge_index.pkl", "wb") as handle:
     pickle.dump(batch.edge_index.cpu(), handle)
 
-final_edge_index = torch.concat([batch.edge_index.cuda(), model.meta_edge_index.cuda()], dim=1).cuda()
+#final_edge_index = torch.concat([batch.edge_index.cuda(), model.meta_edge_index.cuda()], dim=1).cuda()
+#final_edge_index = torch.cat([batch.edge_index.to(device), model.meta_edge_index.to(device)], dim=1)
+final_edge_index = torch.cat([batch.edge_index.to(device), model.meta_edge_indices[0].to(device)], dim=1)
+
 with open(f"{model_dir}/final_edge_index.pkl", "wb") as handle:
     pickle.dump(final_edge_index.cpu(), handle)
+
+# Move edge_index and meta_edge_index to the appropriate device (GPU if available, else CPU)
