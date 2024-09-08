@@ -69,7 +69,7 @@ In the final part of the project, we used a Multilayer GNN (EMGNN) to capture co
 The implementation of EMGNN in this project is inspired by the work from the Explainable Multilayer Graph Neural Network (EMGNN) for Cancer Gene Prediction. For more details, you can refer to the original repository [here](https://github.com/zhanglab-aim/EMGNN). 
  
 
-![EMGNN Architecture](Fig1-1.png)
+![EMGNN Architecture](https://github.com/zhanglab-aim/EMGNN/Fig1-1.png)
 
 ### How to Train
 To train the Multilayer GNN, run:
